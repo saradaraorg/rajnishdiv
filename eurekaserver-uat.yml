@@ -1,0 +1,46 @@
+logging:
+    level:
+        org:
+            hibernate: ERROR
+            springframework:
+                web: ERROR
+
+
+server:
+  port: 8070 
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetchRegistry: false
+    registerWithEureka: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/  
+    
+spring:  
+  application:
+    name: eurekaserver 
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"   
+
+    
+springdoc:
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json 
+  api-docs:
+    path: /swagger-ui-custom.html
+    
+service:
+  title: ${spring.application.name} EUREKA Discovary Services Documentation(${spring.profiles.active})
+  version: v1
+  description: GLOBAL CRM EUREKA Discovary Services
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"    
